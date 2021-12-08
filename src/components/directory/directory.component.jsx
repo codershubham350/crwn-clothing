@@ -47,8 +47,9 @@ class Directory extends React.Component {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, id, imageUrl, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {/*By spreading ...otherSectionProps we are spreading the title,imageUrl and linkUrl in the MenuItem*/}
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
@@ -56,3 +57,6 @@ class Directory extends React.Component {
 }
 
 export default Directory;
+
+/*Note: <MenuItem key={id} {...otherSectionProps} /> is equivalent to 
+<MenuItem key={id} title={title} imageUrl={imageUrl} linkUrl={linkUrl} />*/
